@@ -33,6 +33,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Set up Mill
         uses: jodersky/setup-mill@v0.3.0
@@ -53,6 +55,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Set up Mill
         uses: jodersky/setup-mill@v0.3.0
