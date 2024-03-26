@@ -1,0 +1,78 @@
+on:
+  pull_request:
+  push:
+    branches: main
+
+name: CI/CD
+
+jobs:
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v3
+  #
+  #     - name: Set up Mill
+  #       uses: jodersky/setup-mill@master
+  #       with:
+  #         mill-version: '0.10.5'
+  #
+  #     - name: Set up NPM
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #
+  #     - name: Run Core Tests
+  #       run: |
+  #         cd scala
+  #         npm install
+  #         mill core.test
+
+  checkFormat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Mill
+        uses: jodersky/setup-mill@v0.3.0
+        with:
+          mill-version: "0.10.11"
+
+      - name: Check formatting
+        run: |
+          cd lib
+          mill core.checkFormat
+          for app in $(mill resolve apps._)
+          do
+            mill "$app.checkFormat"
+          done
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Mill
+        uses: jodersky/setup-mill@v0.3.0
+        with:
+          mill-version: "0.10.11"
+
+      - name: Set up NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build scala app
+        run: |
+          cd lib
+          for app in $(mill resolve apps._)
+          do
+            mill $app.fullLinkJS
+          done
+
+      - name: Build extension
+        run: |
+          npm install
+          npm run package

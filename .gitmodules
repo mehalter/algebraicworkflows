@@ -1,0 +1,3 @@
+[submodule "lib/Semagrams.jl"]
+	path = lib/semagrams
+	url = https://github.com/AlgebraicJulia/Semagrams.jl
