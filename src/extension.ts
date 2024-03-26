@@ -21,7 +21,7 @@ function getWebviewOptions(
     // And restrict the webview to only loading content from our extension's `media` directory.
     localResourceRoots: [
       vscode.Uri.joinPath(extensionUri, "media"),
-      vscode.Uri.joinPath(extensionUri, "lib", "out"),
+      vscode.Uri.joinPath(extensionUri, "lib", "out", "app", "fullLinkJS.dest"),
     ],
   };
 }

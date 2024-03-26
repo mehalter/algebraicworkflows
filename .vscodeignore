@@ -1,0 +1,2 @@
+lib/**
+!lib/out/app/fullLinkJS.dest
