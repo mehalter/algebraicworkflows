@@ -1,2 +1,9 @@
+.github
+.gitmodules
+.gitignore
+.vscode
+.metals
+.bloop
+
 lib/**
 !lib/out/app/fullLinkJS.dest
