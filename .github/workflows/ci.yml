@@ -45,6 +45,7 @@ jobs:
         run: |
           cd lib
           mill app.checkFormat
+          cd ..
 
   build:
     runs-on: ubuntu-latest
@@ -68,6 +69,7 @@ jobs:
         run: |
           cd lib
           mill app.fullLinkJS
+          cd ..
 
       - name: Build extension
         run: |
