@@ -4,6 +4,13 @@
 .vscode
 .metals
 .bloop
+.mill-bin
+
+**/*.ts
+
+out/**
+!out/**/*.js
+!out/**/*.js.map
 
 lib/**
 !lib/out/app/fullLinkJS.dest
