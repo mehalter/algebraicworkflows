@@ -5,6 +5,7 @@
 .metals
 .bloop
 .mill-bin
+node_modules
 
 **/*.ts
 

@@ -33,7 +33,8 @@
     "compile": "tsc -p ./",
     "lint": "eslint \"src/**/*.ts\"",
     "watch": "tsc -w -p ./",
-    "package": "vsce package"
+    "package": "vsce package --pre-release",
+    "package-files": "vsce ls"
   },
   "devDependencies": {
     "@types/node": "^16.18.34",
