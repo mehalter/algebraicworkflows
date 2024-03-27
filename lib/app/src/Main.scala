@@ -6,8 +6,12 @@ import semagrams.acsets.{_, given}
 import upickle.default._
 import com.raquo.laminar.api.L._
 import cats.effect._
+import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportTopLevel
-import org.scalajs.dom
+
+import vscode.{Globals, WebviewAPI, AlertMessage}
+
+val webview = Globals.acquireVsCodeApi()
 
 case object SchDWD extends Schema {
 
@@ -257,7 +261,7 @@ def bindings(
     keyDown("?").andThen(a.debug),
 
     // Print help text
-    keyDown("h").andThen(IO(dom.window.alert(helpText))),
+    keyDown("h").andThen(IO(webview.postMessage(new AlertMessage(helpText)))),
 
     // Open serialization window
     keyDown("s").andThen(a.importExport),
